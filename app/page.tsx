@@ -1,10 +1,11 @@
 import Link from "next/link";
-
+import Image from "next/image";
 export default function Home() {
   return (
     <main className="max-w-xl mx-auto px-6 py-16 space-y-6">
-      <p className="font-medium">Annu Kumari</p>
-
+      
+     <Image src="/image.png" alt="Profile Picture" width={130} height={130}></Image>
+     <p className="font-medium">I'm Annu Kumari</p>
       <p className="leading-relaxed">
         I build small, focused software products.
         <br />
