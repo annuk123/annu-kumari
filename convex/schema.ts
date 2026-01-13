@@ -1,0 +1,18 @@
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
+
+export default defineSchema({
+  notes: defineTable({
+    content: v.string(),
+    createdAt: v.number(),
+    published: v.optional(v.boolean()),
+  }).index("by_created_at", ["createdAt"]),
+
+  buildNotes: defineTable({
+    title: v.string(),
+    summary: v.string(),
+    content: v.string(), // markdown
+    createdAt: v.number(),
+    published: v.boolean(),
+  }).index("by_created_at", ["createdAt"]),
+});

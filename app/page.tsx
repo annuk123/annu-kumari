@@ -19,7 +19,7 @@ export default function Home() {
         <span>·</span>
         <Link href="/projects" id="color">Projects</Link>
         <span>·</span>
-        <Link href="/notes" id="color">Notes</Link>
+        <Link href="/notes" id="color">Notes & Build Thoughts</Link>
       </p>
       <p className="text-sm">
         <Link id="color" href="https://github.com/annuk123">GitHub</Link> ·{" "}
