@@ -96,3 +96,14 @@ export const getByIdAdmin = query({
     return await ctx.db.get(args.id);
   },
 });
+
+export const remove = mutation({
+  args: {
+    id: v.id("buildNotes"),
+  },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx.auth);
+
+    await ctx.db.delete(args.id);
+  },
+});

@@ -10,6 +10,7 @@
 
 import type * as auth from "../auth.js";
 import type * as buildNotes from "../buildNotes.js";
+import type * as dashboard from "../dashboard.js";
 import type * as notes from "../notes.js";
 
 import type {
@@ -21,6 +22,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   buildNotes: typeof buildNotes;
+  dashboard: typeof dashboard;
   notes: typeof notes;
 }>;
 

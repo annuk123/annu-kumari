@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import ReactMarkdown from "react-markdown";
 
 export default function AdminBuildNotes() {
   const { user, isLoaded } = useUser();
@@ -15,18 +16,11 @@ export default function AdminBuildNotes() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
+  const [preview, setPreview] = useState(false);
 
-  // Wait for Clerk
-  if (!isLoaded) {
-    return <p>Loading…</p>;
-  }
+  if (!isLoaded) return <p>Loading…</p>;
+  if (!user) return null;
 
-  // Middleware guarantees sign-in, but keep this safe
-  if (!user) {
-    return null;
-  }
-
-  // UI-only admin check
   const isAdmin = user.publicMetadata?.role === "admin";
 
   if (!isAdmin) {
@@ -46,7 +40,6 @@ export default function AdminBuildNotes() {
       });
 
       router.push(`/admin/build-notes/${id}`);
-
     } catch (err) {
       console.error(err);
       alert("Not authorized or failed to save.");
@@ -55,7 +48,16 @@ export default function AdminBuildNotes() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-16 space-y-8">
-      <h1 className="text-xl font-medium">New Build Note</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-medium">New Build Note</h1>
+
+        <button
+          onClick={() => setPreview((p) => !p)}
+          className="text-sm underline"
+        >
+          {preview ? "Edit" : "Preview"}
+        </button>
+      </div>
 
       <input
         type="text"
@@ -73,13 +75,23 @@ export default function AdminBuildNotes() {
         className="w-full border px-3 py-2"
       />
 
-      <textarea
-        placeholder="Write in markdown…"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        rows={18}
-        className="w-full border px-3 py-2 font-mono"
-      />
+      {preview ? (
+        <article className="prose max-w-none border p-4 rounded">
+          {content ? (
+            <ReactMarkdown>{content}</ReactMarkdown>
+          ) : (
+            <p className="text-neutral-400">Nothing to preview yet.</p>
+          )}
+        </article>
+      ) : (
+        <textarea
+          placeholder="Write in markdown…"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          rows={18}
+          className="w-full border px-3 py-2 font-mono"
+        />
+      )}
 
       <button
         onClick={handleSave}

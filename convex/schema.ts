@@ -15,4 +15,11 @@ export default defineSchema({
     createdAt: v.number(),
     published: v.boolean(),
   }).index("by_created_at", ["createdAt"]),
+
+   pageViews: defineTable({
+    path: v.string(),
+    noteId: v.optional(v.id("buildNotes")),
+    createdAt: v.number(),
+  }).index("by_created_at", ["createdAt"]),
 });
+
