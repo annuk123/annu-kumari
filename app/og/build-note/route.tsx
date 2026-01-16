@@ -67,14 +67,27 @@ import { Id } from "@/convex/_generated/dataModel";
 
 export const runtime = "edge";
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
-  const post = await fetchQuery(api.buildNotes.getById, {
-    id: params.id as Id<"buildNotes">,
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+
+  if (!id) {
+    return new ImageResponse(
+      <div style={{ fontSize: 40 }}>Missing id</div>,
+      { width: 1200, height: 630 }
+    );
+  }
+
+  const post = await fetchQuery(api.buildNotes.getByIdPublic, {
+    id: id as Id<"buildNotes">,
   });
 
+  if (!post) {
+    return new ImageResponse(
+      <div style={{ fontSize: 40 }}>Not found</div>,
+      { width: 1200, height: 630 }
+    );
+  }
   return new ImageResponse(
     (
       <div
