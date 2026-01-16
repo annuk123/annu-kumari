@@ -37,8 +37,8 @@ export async function GET(req: Request) {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0f172a",
-          color: "white",
+          background: "#ffffff",
+          color: "black",
         }}
       >
         <h1 style={{ fontSize: 64, marginBottom: 24 }}>
