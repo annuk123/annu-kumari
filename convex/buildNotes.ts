@@ -107,3 +107,20 @@ export const remove = mutation({
     await ctx.db.delete(args.id);
   },
 });
+
+
+
+export const getByIdPublic = query({
+  args: {
+    id: v.id("buildNotes"),
+  },
+  handler: async (ctx, { id }) => {
+    const note = await ctx.db.get(id);
+
+    if (!note || !note.published) {
+      return null;
+    }
+
+    return note;
+  },
+});
