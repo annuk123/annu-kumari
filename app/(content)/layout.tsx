@@ -18,7 +18,7 @@ export default function ContentLayout({
           <li><Link id="color" href="/about">About</Link></li>
           <li><Link id="color" href="/now">Now</Link></li>
           <li><Link id="color" href="/projects">Projects</Link></li>
-          <li><Link id="color" href="/notes">Notes</Link></li>
+          <li><Link id="color" href="/notes">Notes & build notes</Link></li>
         </ul>
       </nav>
 
