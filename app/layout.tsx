@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ConvexClientProvider } from "@/components/ConvexClient/ConvexClientProvider";
+import { Analytics } from "@vercel/analytics/next"
 export const metadata: Metadata = {
   title: "Annu Kumari",
   description:
@@ -19,6 +20,7 @@ export default function RootLayout({
         <ClerkProvider>
           <ConvexClientProvider>
             {children}
+            <Analytics />
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
