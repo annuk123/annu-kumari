@@ -14,7 +14,9 @@ export default defineSchema({
     content: v.string(), // markdown
     createdAt: v.number(),
     published: v.boolean(),
-  }).index("by_created_at", ["createdAt"]),
+    slug: v.optional(v.string()),
+  }).index("by_slug", ["slug"])
+  .index("by_created_at", ["createdAt"]),
 
    pageViews: defineTable({
     path: v.string(),

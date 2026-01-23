@@ -3,6 +3,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ConvexClientProvider } from "@/components/ConvexClient/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/next"
+import "highlight.js/styles/github-dark.css";
+
 export const metadata: Metadata = {
   title: "Annu Kumari",
   description:

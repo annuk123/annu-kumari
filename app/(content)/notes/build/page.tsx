@@ -34,8 +34,8 @@ export default function BuildNotes() {
           </p>
         ) : (
           posts.map((post) => (
-            <article key={post._id} className="space-y-2">
-              <Link href={`/notes/build/${post._id}`}>
+            <article key={post.slug} className="space-y-2">
+              <Link href={`/notes/build/${post.slug}`}>
                 <h2 className="text-lg font-medium hover:opacity-80">
                   {post.title}
                 </h2>
