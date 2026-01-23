@@ -63,24 +63,21 @@
 import { ImageResponse } from "next/og";
 import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
-import { Id } from "@/convex/_generated/dataModel";
 
 export const runtime = "edge";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const id = searchParams.get("id");
+  const slug = searchParams.get("slug");
 
-  if (!id) {
+  if (!slug) {
     return new ImageResponse(
-      <div style={{ fontSize: 40 }}>Missing id</div>,
+      <div style={{ fontSize: 40 }}>Missing slug</div>,
       { width: 1200, height: 630 }
     );
   }
 
-  const post = await fetchQuery(api.buildNotes.getByIdPublic, {
-    id: id as Id<"buildNotes">,
-  });
+  const post = await fetchQuery(api.buildNotes.getBySlugPublic, { slug });
 
   if (!post) {
     return new ImageResponse(
@@ -88,31 +85,30 @@ export async function GET(req: Request) {
       { width: 1200, height: 630 }
     );
   }
+
   return new ImageResponse(
     (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background: "#0a0a0a",
-          color: "white",
-        }}
-      >
-        <h1 style={{ fontSize: 64, fontWeight: 600 }}>
-          {post?.title ?? "Build note"}
+      <div style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "80px",
+        background: "#0a0a0a",
+        color: "white",
+      }}>
+        <h1 style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.1 }}>
+          {post.title}
         </h1>
-        <p style={{ fontSize: 28, opacity: 0.7 }}>
-          {post?.summary}
+        <p style={{ fontSize: 28, opacity: 0.7, marginTop: 20 }}>
+          {post.summary}
+        </p>
+        <p style={{ fontSize: 24, opacity: 0.4, marginTop: 40 }}>
+          annu-kumari.pixelui.studio
         </p>
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-    }
+    { width: 1200, height: 630 }
   );
 }
