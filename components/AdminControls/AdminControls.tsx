@@ -8,11 +8,14 @@ import Link from "next/link";
 
 export default function AdminControls({
   postId,
+  slug,
   published,
 }: {
   postId: Id<"buildNotes">;
+  slug: string;
   published: boolean;
 }) {
+
   const togglePublished = useMutation(api.buildNotes.togglePublished);
   const [loading, setLoading] = useState(false);
 
@@ -71,12 +74,13 @@ export default function AdminControls({
       </span>
 
       {/* Edit */}
-     <Link
-  href={`/admin/build-notes/${postId}/edit`}
+    <Link
+  href={`/admin/build-notes/${slug}/edit`}
   className="underline text-neutral-700"
 >
   Edit
 </Link>
+
 
 
       {/* Publish / Unpublish */}

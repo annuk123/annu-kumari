@@ -2,22 +2,26 @@
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
+import { use } from "react";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import remarkBreaks from "remark-breaks";
 
 export default function EditBuildNote({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = use(params);
   const router = useRouter();
-  const post = useQuery(api.buildNotes.getByIdAdmin, {
-    id: params.id as Id<"buildNotes">,
-  });
+
+    const post = useQuery(api.buildNotes.getBySlugAdmin, {
+      slug,
+    });
+  
 
   const update = useMutation(api.buildNotes.update);
 
@@ -39,15 +43,6 @@ export default function EditBuildNote({
   const words = content.split(/\s+/).length;
   const readingTime = Math.ceil(words / 200);
 
-  const slug = useMemo(
-    () =>
-      title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, ""),
-    [title]
-  );
-
   const safePost = post;
   async function handleSave() {
     await update({
@@ -59,7 +54,8 @@ export default function EditBuildNote({
     });
 
     
-    router.push(`/admin/build-notes/${safePost.slug}`);
+    router.push(`/admin/build-notes/${slug}`);
+
   }
   
 
@@ -102,8 +98,8 @@ export default function EditBuildNote({
         />
 
         <article className="prose prose-neutral max-w-none border p-6 rounded overflow-auto h-125">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+          <Markdown
+            remarkPlugins={[remarkGfm, remarkBreaks]}
             rehypePlugins={[rehypeHighlight]}
             components={{
               code({ className, children, ...props }) {
@@ -123,7 +119,7 @@ export default function EditBuildNote({
             }}
           >
             {content || "*Start editing…*"}
-          </ReactMarkdown>
+          </Markdown>
         </article>
       </div>
 

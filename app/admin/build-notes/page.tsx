@@ -5,9 +5,10 @@ import { api } from "@/convex/_generated/api";
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import remarkBreaks from "remark-breaks";
 
 export default function AdminBuildNotes() {
   const { user, isLoaded } = useUser();
@@ -38,8 +39,12 @@ export default function AdminBuildNotes() {
   const readingTime = Math.max(1, Math.ceil(words / 200));
 
   async function handleSave() {
-    const id = await create({ title, summary, content, slug });
-    router.push(`/admin/build-notes/${id}`);
+    if (!title.trim()) {
+    alert("Title is required");
+    return;
+  }
+    await create({ title, summary, content, slug });
+    router.push(`/admin/build-notes/${slug}`);
   }
 
   function insertSnippet(snippet: string) {
@@ -66,7 +71,7 @@ export default function AdminBuildNotes() {
       />
 
       <div className="text-xs text-neutral-500 flex justify-between">
-        <span>Slug: /build-notes/{slug || "your-title"}</span>
+        <span>Slug: /notes/build/{slug || "your-title"}</span>
         <span>{words} words · {readingTime} min read</span>
       </div>
 
@@ -126,8 +131,8 @@ export default function AdminBuildNotes() {
         />
 
         <article className="prose prose-neutral max-w-none border p-6 rounded overflow-auto h-125">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+          <Markdown
+            remarkPlugins={[remarkGfm, remarkBreaks]}
             rehypePlugins={[rehypeHighlight]}
             components={{
               code({ className, children, ...props }) {
@@ -147,7 +152,7 @@ export default function AdminBuildNotes() {
             }}
           >
             {content || "*Start writing…*"}
-          </ReactMarkdown>
+          </Markdown>
         </article>
       </div>
 

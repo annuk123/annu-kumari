@@ -53,10 +53,22 @@ export const update = mutation({
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx.auth);
- const slug = args.slug || slugify(args.title);
+
     const note = await ctx.db.get(args.id);
     if (!note) {
       throw new Error("Build note not found");
+    }
+
+    let slug = args.slug || slugify(args.title);
+
+    // 👇 check collision (ignore self)
+    const existing = await ctx.db
+      .query("buildNotes")
+      .withIndex("by_slug", (q) => q.eq("slug", slug))
+      .unique();
+
+    if (existing && existing._id !== args.id) {
+      slug = slug + "-" + Date.now();
     }
 
     await ctx.db.patch(args.id, {
@@ -67,6 +79,7 @@ export const update = mutation({
     });
   },
 });
+
 
 
 export const listPublished = query({
@@ -128,6 +141,17 @@ export const remove = mutation({
   },
 });
 
+export const getBySlugAdmin = query({
+  args: { slug: v.string() },
+  handler: async (ctx, { slug }) => {
+    await requireAdmin(ctx.auth);
+
+    return await ctx.db
+      .query("buildNotes")
+      .withIndex("by_slug", (q) => q.eq("slug", slug))
+      .unique();
+  },
+});
 
 
 export const getByIdPublic = query({

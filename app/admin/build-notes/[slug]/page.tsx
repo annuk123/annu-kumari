@@ -2,38 +2,40 @@
 
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import AdminControls from "@/components/AdminControls/AdminControls";
-import { Id } from "@/convex/_generated/dataModel";
-import { useParams } from "next/navigation";
-import { useState, useMemo } from "react";
+import { useState } from "react";
+import remarkBreaks from "remark-breaks";
+import { use } from "react";
 
-export default function AdminBuildNotePage() {
-   const params = useParams();
-  const id = params.id as Id<"buildNotes">;
+export default function  AdminBuildNotePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = use(params);
 
-  const post = useQuery(api.buildNotes.getByIdAdmin, { id });
+    const post = useQuery(api.buildNotes.getBySlugAdmin, {
+      slug,
+    });
+  
+
 
   const [preview, setPreview] = useState(true);
 
   if (post === undefined) return <p>Loading…</p>;
   if (!post) return <p>Not found.</p>;
 
-  const words = post.content.split(/\s+/).length;
-  const readingTime = Math.ceil(words / 200);
-
-  const slug = post.title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+const words = post.content.trim().split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-16 space-y-8">
       {/* Top controls */}
       <div className="flex items-center justify-between">
-        <AdminControls postId={post._id} published={post.published} />
+        <AdminControls postId={post._id} slug={slug} published={post.published} />
 
         <button
           onClick={() => setPreview((p) => !p)}
@@ -55,8 +57,8 @@ export default function AdminBuildNotePage() {
       {/* Content */}
       {preview ? (
         <article className="prose prose-neutral max-w-none border p-6 rounded">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+          <Markdown
+           remarkPlugins={[remarkGfm, remarkBreaks]}
             rehypePlugins={[rehypeHighlight]}
             components={{
               code({ className, children, ...props }) {
@@ -76,7 +78,7 @@ export default function AdminBuildNotePage() {
             }}
           >
             {post.content}
-          </ReactMarkdown>
+          </Markdown>
         </article>
       ) : (
         <pre className="whitespace-pre-wrap text-sm border p-4 rounded font-mono bg-neutral-50">
