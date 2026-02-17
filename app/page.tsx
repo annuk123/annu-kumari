@@ -25,7 +25,9 @@ export default function Home() {
         <Link id="color" href="https://github.com/annuk123">GitHub</Link> ·{" "}
         <Link id="color" href="https://x.com/Annu66126617">X</Link> ·{" "}
         <Link id="color" href="mailto:anuk35168@gmail.com">Email</Link> ·{" "}
-        <Link id="color" href="https://www.linkedin.com/in/annu-kumari-540337237/">LinkedIn</Link>
+        <Link id="color" href="https://www.linkedin.com/in/annu-kumari-540337237/">LinkedIn</Link> · {" "}
+        <Link id="color" href="https://www.youtube.com/@nexralab-ai">YouTube</Link> · {" "}
+        <Link id="color" href="https://www.instagram.com/solopreneur_annu">Instagram</Link>
       </p>
     </main>
   );
