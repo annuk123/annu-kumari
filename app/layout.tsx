@@ -4,6 +4,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ConvexClientProvider } from "@/components/ConvexClient/ConvexClientProvider";
 import { Analytics } from "@vercel/analytics/next"
 import "highlight.js/styles/github-dark.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Annu Kumari",
@@ -17,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className="antialiased font-mono">
         <ClerkProvider>
           <ConvexClientProvider>
