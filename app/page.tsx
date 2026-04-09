@@ -1,9 +1,34 @@
-import Link from "next/link";
-import Image from "next/image";
+import Hero from "@/components/sections/hero";
+import About from "@/components/sections/About";
+import ProjectsPage from "@/components/sections/projects";
+import ServicesPage from "@/components/sections/services";
+import NowPage from "@/components/sections/now";
+import Notes from "./notes/page";
+import ContactPage from "@/components/sections/contact";
+import PhotographyPage from "@/components/sections/photography";
 export default function Home() {
   return (
-    <main className="max-w-xl mx-auto px-6 py-16 space-y-6">
-      
+    <main>
+
+
+<Hero />
+
+<About />
+
+<ProjectsPage />
+
+<ServicesPage />
+
+<NowPage />
+<Notes />
+
+<PhotographyPage />
+
+<ContactPage />
+
+
+
+{/*       
      <Image src="/image.png" alt="Profile Picture" width={130} height={130}></Image>
      <p className="font-medium">I'm Annu Kumari</p>
       <p className="leading-relaxed">
@@ -28,7 +53,7 @@ export default function Home() {
         <Link id="color" href="https://www.linkedin.com/in/annu-kumari-540337237/">LinkedIn</Link> · {" "}
         <Link id="color" href="https://www.youtube.com/@nexralab-ai">YouTube</Link> · {" "}
         <Link id="color" href="https://www.instagram.com/solopreneur_annu">Instagram</Link>
-      </p>
+      </p> */}
     </main>
   );
 }
