@@ -11,9 +11,44 @@ import Footer from "@/components/layout/Footer";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
+// export const metadata: Metadata = {
+//   title: "Annu Kumari",
+//   description: "Solopreneur building AI products. Available for contract work.",
+// };
+
 export const metadata: Metadata = {
-  title: "Annu Kumari",
-  description: "Solopreneur building AI products. Available for contract work.",
+  title: "Annu Kumari - AI Product Builder",
+  description:
+    "Solopreneur building AI products. Available for contract work. Fast, focused, and no bloat.",
+
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
+
+  openGraph: {
+    title: "Annu Kumari - AI Product Builder",
+    description: "Solopreneur building AI products. Available for contract work.",
+    url: "https://annukumari.com/",
+    siteName: "Annu Kumari",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Annu Kumari",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Annu Kumari - AI Product Builder",
+    description: "Solopreneur building AI products. Available for contract work.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
