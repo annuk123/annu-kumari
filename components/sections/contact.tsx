@@ -18,7 +18,7 @@ const fadeUp: Variants = {
 };
 
 const socials = [
-  { label: "X", href: "https://x.com/Annu66126617" },
+  { label: "X", href: "https://x.com/@Annu_NexraAI" },
   { label: "GitHub", href: "https://github.com/annuk123" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/annu-kumari-540337237/" },
   { label: "YouTube", href: "https://www.youtube.com/@nexralab-ai" },

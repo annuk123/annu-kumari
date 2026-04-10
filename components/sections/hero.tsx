@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import { Button } from "../ui/button";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -77,18 +78,18 @@ export default function Hero() {
         animate="show"
         className="flex flex-wrap items-center gap-3"
       >
-        <Link
-          href="/contact"
+        <a
+          href="#contact"
           className="inline-flex items-center justify-center rounded-md bg-foreground text-background text-sm font-medium px-5 py-2.5 transition-opacity hover:opacity-85"
         >
           Work with me
-        </Link>
-        <Link
-          href="/projects"
+        </a>
+        <a
+         href="#projects"
           className="inline-flex items-center justify-center rounded-md border border-border text-sm font-medium px-5 py-2.5 text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/30"
         >
           See my work
-        </Link>
+        </a>
       </motion.div>
 
       {/* Subtle divider */}
