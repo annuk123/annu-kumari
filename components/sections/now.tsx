@@ -211,25 +211,6 @@ export default function NowPage() {
         </div>
       </motion.div>
 
-      {/* Footer note */}
-      <motion.p
-        custom={7}
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        className="text-xs text-muted-foreground/30 leading-relaxed"
-      >
-        This is a{" "}
-        <a
-          href="https://nownownow.com/about"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-4 hover:text-muted-foreground/60 transition-colors"
-        >
-          /now page
-        </a>
-        . Updated manually whenever something significant changes.
-      </motion.p>
     </div>
   );
 }
