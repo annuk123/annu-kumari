@@ -84,7 +84,7 @@ export default function About() {
           >
             Based in Ranchi, India. Building in public on{" "}
             <a
-              href="https://x.com/Annu66126617"
+              href="https://x.com/@Annu_NexraAI"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
