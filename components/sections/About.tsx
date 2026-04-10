@@ -82,7 +82,7 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-muted-foreground"
           >
-            Based in Dehradun, India. Building in public on{" "}
+            Based in Ranchi, India. Building in public on{" "}
             <a
               href="https://x.com/Annu66126617"
               target="_blank"
