@@ -49,7 +49,7 @@ export default function NowPage() {
       >
         <span className="text-xs text-muted-foreground/40">April 2026</span>
         <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
-        <span className="text-xs text-muted-foreground/40">Dehradun, India</span>
+        <span className="text-xs text-muted-foreground/40">Ranchi, India</span>
         <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
         <span className="inline-flex items-center gap-1.5 text-xs text-[var(--accent-green)]">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
