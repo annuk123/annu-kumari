@@ -6,6 +6,7 @@ import NowPage from "@/components/sections/now";
 import Notes from "./notes/page";
 import ContactPage from "@/components/sections/contact";
 import PhotographyPage from "@/components/sections/photography";
+import JapaneseSection from "@/components/sections/JapaneseSection";
 export default function Home() {
   return (
     <main>
@@ -18,10 +19,10 @@ export default function Home() {
 <ProjectsPage />
 
 <ServicesPage />
-
-<NowPage />
 <Notes />
+<NowPage />
 
+<JapaneseSection />
 <PhotographyPage />
 
 <ContactPage />

@@ -1,16 +1,3 @@
-// const navLinks = [
-// { label: "Home", href: "/", sectionId: "home" },
-//   { label: "About", href: "/#about", sectionId: "about" },
-//   { label: "Projects", href: "/#projects", sectionId: "projects" },
-//   { label: "Services", href: "/#services", sectionId: "services" },
-//   { label: "Now", href: "/#now", sectionId: "now" },
-//   { label: "Notes", href: "/#notes", sectionId: "notes" },
-//   { label: "Photography", href: "/#photography", sectionId: "photography" },
-//   { label: "Contact", href: "/#contact", sectionId: "contact" },
-// ];
-
-
-
 "use client";
 
 import Link from "next/link";
@@ -24,10 +11,14 @@ const navLinks = [
   { label: "About", href: "/#about", sectionId: "about" },
   { label: "Projects", href: "/#projects", sectionId: "projects" },
   { label: "Services", href: "/#services", sectionId: "services" },
-  { label: "Now", href: "/#now", sectionId: "now" },
   { label: "Notes", href: "/#notes", sectionId: "notes" },
+  { label: "Now", href: "/#now", sectionId: "now" },
+
+  { label: "日本語", href: "/#japanese", sectionId: "japanese" },
+
   { label: "Photography", href: "/#photography", sectionId: "photography" },
   { label: "Contact", href: "/#contact", sectionId: "contact" },
+
 ];
 
 export default function Navbar() {
