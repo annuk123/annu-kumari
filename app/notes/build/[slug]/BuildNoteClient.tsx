@@ -84,7 +84,7 @@ export default function BuildNoteClient({ slug }: { slug?: string }) {
       <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
         <p className="text-sm text-muted-foreground mb-4">Note not found.</p>
         <Link
-          href="/notes"
+          href="/"
           className="text-sm text-foreground underline underline-offset-4"
         >
           Back to notes
@@ -98,7 +98,7 @@ export default function BuildNoteClient({ slug }: { slug?: string }) {
       {/* Back */}
       <motion.div custom={0} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
         <Link
-          href="/notes"
+          href="/"
           className="text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors inline-flex items-center gap-1.5"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

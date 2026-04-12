@@ -50,6 +50,17 @@ const services = [
       "Build-in-public frameworks",
     ],
   },
+  {
+  number: "04",
+  title: "Data Annotation",
+  description:
+    "Accurate, consistent data labeling for AI and ML projects. Text classification, intent labeling, entity tagging, and content moderation. Fast turnaround, attention to edge cases.",
+  deliverables: [
+    "Text & intent annotation",
+    "Entity & sentiment labeling",
+    "Quality-checked datasets",
+  ],
+},
 ];
 
 export default function ServicesPage() {

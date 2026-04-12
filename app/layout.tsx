@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Annu Kumari - AI Product Builder",
     description: "Solopreneur building AI products. Available for contract work.",
-    url: "https://annu-kumari.nexralab.com/",
+    url: "https://annu-kumari.nexralab.com",
     siteName: "Annu Kumari",
     images: [
       {
-        url: "/og.png",
+        url: "/annu.png",
         width: 1200,
         height: 630,
         alt: "Annu Kumari",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Annu Kumari - AI Product Builder",
     description: "Solopreneur building AI products. Available for contract work.",
-    images: ["/og.png"],
+    images: ["/annu.png"],
   },
 };
 
