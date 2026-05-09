@@ -107,7 +107,7 @@ export default function NowPage() {
             {
               title: "Japanese",
               detail: "Hiragana done, working through basic vocabulary. Slow and steady.",
-              progress: 15,
+              progress: 55,
               tag: "language",
             },
             {
@@ -154,14 +154,14 @@ export default function NowPage() {
           {[
             {
               title: "Graduation",
-              detail: "Final year of CS. Done in ~45 days. Moving to Dehradun to work independently full-time.",
-              countdown: "~45 days",
+              detail: "Final year of CS. Done in ~20 days. Moving to Dehradun to work independently full-time.",
+              countdown: "~20 days",
             },
             {
-              title: "Contract work",
-              detail: "Setting up for part-time remote contracts — AI integrations, MVPs, social systems — to fund the runway while building Nexra.",
-              countdown: "open now",
-            },
+  title: "Contract & Remote Work",
+  detail: "Open to part-time remote Internships, or contracts — AI integrations, full-stack MVPs, and product management — to fund the runway while building Nexra.",
+  countdown: "open now",
+},
           ].map((item) => (
             <div key={item.title} className="flex items-start gap-4 rounded-lg border border-border/40 bg-card p-5">
               <div className="shrink-0 rounded-md border border-border/50 bg-background px-2.5 py-1.5 text-center min-w-[72px]">

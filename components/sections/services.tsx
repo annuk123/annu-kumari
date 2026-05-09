@@ -19,17 +19,6 @@ const fadeUp: Variants = {
 const services = [
   {
     number: "01",
-    title: "MVP Development",
-    description:
-      "Full-stack web products built fast. I take an idea from zero to a deployed, working product — Next.js frontend, FastAPI backend, database, auth, deployment. No bloat, no unnecessary complexity.",
-    deliverables: [
-      "Working deployed product",
-      "Clean, documented codebase",
-      "2–4 week turnaround",
-    ],
-  },
-  {
-    number: "02",
     title: "AI Integrations",
     description:
       "Plug GPT, Claude, or custom LLM workflows into your existing product or build one from scratch. I've built streaming AI responses, custom system prompts, topic guards, URL readers, and multi-turn conversation modes.",
@@ -40,27 +29,27 @@ const services = [
     ],
   },
   {
-    number: "03",
-    title: "Social Media Systems",
+    number: "02",
+    title: "Product Management",
     description:
-      "Build-in-public strategy, content systems, and founder brand building on X, LinkedIn, and YouTube. I don't just post — I help you build a repeatable system that compounds over time.",
+      "Structured thinking for early-stage products. I help founders translate messy ideas into clear roadmaps, prioritize ruthlessly, and ship what actually matters — without the overhead of a full PM hire.",
     deliverables: [
-      "Content strategy & calendar",
-      "Platform-specific copy",
-      "Build-in-public frameworks",
+      "Product roadmap & prioritization",
+      "User story mapping",
+      "Feature scoping & PRDs",
     ],
   },
   {
-  number: "04",
-  title: "Data Annotation",
-  description:
-    "Accurate, consistent data labeling for AI and ML projects. Text classification, intent labeling, entity tagging, and content moderation. Fast turnaround, attention to edge cases.",
-  deliverables: [
-    "Text & intent annotation",
-    "Entity & sentiment labeling",
-    "Quality-checked datasets",
-  ],
-},
+    number: "03",
+    title: "Full-Stack MVP Build",
+    description:
+      "End-to-end product builds using Next.js, TypeScript, FastAPI, PostgreSQL, and AI APIs — deployed on Digital Ocean. I handle the full stack so you don't have to stitch together five freelancers.",
+    deliverables: [
+      "Next.js + TypeScript frontend",
+      "FastAPI + PostgreSQL backend",
+      "AI API integration & DO deployment",
+    ],
+  },
 ];
 
 export default function ServicesPage() {

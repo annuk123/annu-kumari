@@ -66,8 +66,8 @@ export default function Hero() {
         >
           Nexra
         </Link>{" "}
-        — an AI thinking partner for founders. Available for contract work in AI
-        integrations, MVP development, and social media systems.
+        — an AI thinking partner for founders. 
+        Available for contract & remote work in AI integrations, full-stack MVP development, and product management.
       </motion.p>
 
       {/* CTAs */}

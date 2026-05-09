@@ -25,8 +25,8 @@ const ArrowUpRight = () => (
 
 const milestones = [
   { label: "Hiragana", done: true },
-  { label: "Katakana", done: false },
-  { label: "Basic vocab", done: false },
+  { label: "Katakana", done: true },
+  { label: "Basic vocab", done: true },
   { label: "N5 grammar", done: false },
   { label: "N5 exam", done: false },
 ];
@@ -66,7 +66,7 @@ export default function JapaneseSection() {
             <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40">
               Progress
             </p>
-            <span className="text-xs font-mono text-[var(--accent-green)]">1 / 5</span>
+            <span className="text-xs font-mono text-[var(--accent-green)]">3 / 5</span>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -94,9 +94,9 @@ export default function JapaneseSection() {
           <div className="mt-6 space-y-1.5">
             <div className="flex justify-between">
               <span className="text-xs text-muted-foreground/30">Overall</span>
-              <span className="text-xs text-muted-foreground/30">15%</span>
+              <span className="text-xs text-muted-foreground/30">55%</span>
             </div>
-            <div className="h-1 w-full rounded-full bg-border/40 overflow-hidden">
+            <div className="h-1 w-full  rounded-full bg-border/40 overflow-hidden">
               <div className="h-full rounded-full bg-[var(--accent-green)]/50" style={{ width: "15%" }} />
             </div>
           </div>

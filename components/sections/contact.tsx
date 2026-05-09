@@ -159,7 +159,7 @@ export default function ContactPage() {
               Hire me for contract work
             </p>
             <p className="text-xs text-muted-foreground/60 leading-relaxed mb-4">
-              AI integrations, MVP development, social media systems. Part-time,
+              AI integrations, full-stack MVP development, and product management. Part-time,
               remote, fast turnaround.
             </p>
             <Link

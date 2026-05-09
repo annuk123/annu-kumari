@@ -69,8 +69,7 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-muted-foreground"
           >
-            On the side, I take contract work — AI integrations, full-stack
-            MVPs, and social media systems for startups and solo founders. I
+            On the side, I take contract work — AI integrations, full-stack MVP development, and product management for startups and solo founders. I
             move fast, communicate clearly, and ship working products.
           </motion.p>
 
