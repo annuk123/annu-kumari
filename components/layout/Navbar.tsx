@@ -14,7 +14,7 @@ const navLinks = [
   { label: "Notes", href: "/#notes", sectionId: "notes" },
   { label: "Now", href: "/#now", sectionId: "now" },
 
-  { label: "日本語", href: "/#japanese", sectionId: "japanese" },
+  { label: "Communication", href: "/#american-accent", sectionId: "american-accent" },
 
   { label: "Photography", href: "/#photography", sectionId: "photography" },
   { label: "Contact", href: "/#contact", sectionId: "contact" },

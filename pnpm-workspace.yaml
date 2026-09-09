@@ -1,5 +1,11 @@
 packages:
   - .
+allowBuilds:
+  '@clerk/shared': false
+  esbuild: false
+  msw: false
+  sharp: false
+  unrs-resolver: false
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

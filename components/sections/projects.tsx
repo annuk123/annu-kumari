@@ -1,72 +1,3 @@
-// import Link from "next/link";
-
-// export default function Projects() {
-//   return (
-//     <main className="max-w-xl mx-auto px-6 py-16 space-y-8">
-//       <p className="font-medium">Projects</p>
-
-//       <p className="leading-relaxed">
-//         A small selection of projects I’ve worked on. I typically
-//         focus on one primary project at a time and keep others
-//         intentionally limited.
-//       </p>
-
-//       {/* Nexra */}
-//       <div className="space-y-2">
-//         <p className="font-medium">Nexra</p>
-//         <p className="leading-relaxed">
-//           An early-stage AI project focused on improving startup
-//           idea validation and early distribution clarity.
-//         </p>
-//         <p className="text-sm">
-//           Status: Active · <Link id="color" href="https://nexra.pixelui.studio/">Website</Link>
-//         </p>
-//       </div>
-
-//       {/* RemindMe */}
-//       <div className="space-y-2">
-//         <p className="font-medium">RemindMe</p>
-//         <p className="leading-relaxed">
-//           A lightweight reminder product built to explore simple
-//           workflows and user retention at small scale.
-//         </p>
-//         <p className="text-sm">
-//           Status: MVP / Paused ·{" "}
-//           <Link id="color" href="https://remindme.pixelui.studio/">Website</Link>
-//         </p>
-//       </div>
-
-//       {/* AlgoFlow */}
-//       <div className="space-y-2">
-//         <p className="font-medium">AlgoFlow</p>
-//         <p className="leading-relaxed">
-//           A learning tool for data structures and algorithms,
-//           focused on step-by-step visualizations of code and
-//           execution flow.
-//         </p>
-//         <p className="text-sm">
-//           Status: MVP / Paused ·{" "}
-//           <Link id="color" href="https://www.algoflux.tech/">Website</Link>
-//         </p>
-//       </div>
-
-//       {/* UICrate */}
-//       <div className="space-y-2">
-//         <p className="font-medium">UICrate</p>
-//         <p className="leading-relaxed">
-//           A curated collection of UI components and design
-//           references built to reduce time spent searching for
-//           common interface patterns.
-//         </p>
-//         <p className="text-sm">
-//           Status: MVP / Paused ·{" "}
-//           <Link id="color" href="https://www.pixelui.studio/">Website</Link>
-//         </p>
-//       </div>
-//     </main>
-//   );
-
-// }
 "use client";
 
 import { motion, type Variants } from "framer-motion";
@@ -85,42 +16,93 @@ const fadeUp: Variants = {
   }),
 };
 
-const projects = [
+const hardwareProjects = [
+  {
+    name: "Desktop Companion Robot",
+    year: "2026",
+    category: "Robotics · Embedded Systems",
+    description:
+      "Expressive desktop robot prototype built around ESP32. Combines an OLED-based animated face, MPU6050 motion sensing, servo control, touch and proximity interaction, and custom behavioral logic.",
+    stack: [
+      "ESP32",
+      "Embedded C/C++",
+      "MPU6050",
+      "OLED",
+      "Servo",
+      "Sensors",
+    ],
+  },
+  {
+    name: "Smart Room Locker",
+    year: "2026",
+    description:
+      "RFID-based smart locker prototype using authentication, servo actuation, OLED feedback, and buzzer alerts. Built as an embedded access-control system.",
+    stack: [
+      "Arduino",
+      "RFID",
+      "Servo",
+      "OLED",
+      "Buzzer",
+      "Embedded C/C++",
+    ],
+  },
+  {
+    name: "Automatic Room Lighting",
+    year: "2026",
+    description:
+      "Ambient-light automation system using an LDR to control room lighting, with RGB LED status feedback, buzzer alerts, and OLED output.",
+    stack: [
+      "Arduino",
+      "LDR",
+      "RGB LED",
+      "LED",
+      "OLED",
+      "Buzzer",
+      "Embedded C/C++",
+    ],
+  },
+];
+
+const softwareProjects = [
   {
     name: "Nexra",
-    year: "2024 — present",
+    year: "2025 — 2026",
     description:
-      "AI thinking partner for solo founders. Challenges assumptions, pokes holes in ideas, and pushes back — instead of validating everything you say.",
-    stack: ["Next.js", "FastAPI", "GPT-4.1-mini", "PostgreSQL", "SSE Streaming"],
-    status: "active",
+      "AI thinking partner for solo founders. Challenges assumptions, pokes holes in ideas, and pushes back instead of simply validating them.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Digital Ocean",
+      "FastAPI",
+      "GPT APIs",
+      "PostgreSQL",
+      "SSE Streaming",
+    ],
     href: "https://nexralab.com",
   },
   {
     name: "RemindMe",
-    year: "2024",
+    year: "2025",
     description:
-      "Lightweight reminder tool built to explore simple workflow automation and user retention mechanics at small scale.",
-    stack: ["Next.js", "PostgreSQL"],
-    status: "paused",
-    href: "https://remindme.pixelui.studio/",
+      "Lightweight reminder tool built to explore workflow automation and user retention mechanics at small scale.",
+    stack: ["Next.js", "TypeScript", "Shadcn", "Convex DB"],
+    href: "https://remind-me-iot.vercel.app/",
   },
   {
     name: "AlgoFlow",
-    year: "2023",
+    year: "2025",
     description:
-      "Step-by-step DSA visualizer. Helps developers understand algorithms through execution flow rather than just reading theory.",
-    stack: ["React", "Visualization"],
-    status: "paused",
-    href: "https://www.algoflux.tech/",
+      "Step-by-step DSA visualizer that helps developers understand algorithms through execution flow rather than static theory.",
+    stack:  ["Next.js", "TypeScript", "Shadcn", "Convex DB"],
+    href: "https://algoflow-three.vercel.app/",
   },
   {
     name: "UICrate",
-    year: "2023",
+    year: "2025",
     description:
-      "Curated UI component library. Built to cut the time founders waste searching for common interface patterns.",
-    stack: ["Next.js", "Tailwind CSS"],
-    status: "paused",
-    href: "https://www.pixelui.studio/",
+      "Curated UI component library built to reduce the time founders spend searching for common interface patterns.",
+    stack:  ["Next.js", "TypeScript", "Shadcn", "Convex DB"],
+    href: "https://pixelui-room.vercel.app/",
   },
 ];
 
@@ -143,155 +125,240 @@ const ArrowUpRight = () => (
   </svg>
 );
 
+const SectionLabel = ({
+  number,
+  children,
+}: {
+  number: string;
+  children: string;
+}) => (
+  <div className="flex items-center gap-3">
+    <span className="text-xs font-medium tracking-widest text-[var(--accent-green)]/50">
+      {number}
+    </span>
+
+    <span className="text-xs uppercase tracking-widest text-muted-foreground/40">
+      {children}
+    </span>
+  </div>
+);
+
 export default function ProjectsPage() {
   return (
-    <div id="projects" className="mx-auto max-w-3xl px-6 pt-32 pb-24">
+    <section
+      id="projects"
+      className="mx-auto max-w-3xl px-6 pt-32 pb-24"
+    >
+      {/* Header */}
       <motion.p
         custom={0}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground/40"
       >
         Projects
       </motion.p>
 
-      <motion.h1
+      <motion.h2
         custom={1}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-3xl font-bold tracking-tight mb-3"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-3 text-3xl font-bold tracking-tight"
       >
         Things I've built
-      </motion.h1>
+      </motion.h2>
 
       <motion.p
         custom={2}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-muted-foreground text-sm leading-relaxed mb-16 max-w-md"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-20 max-w-lg text-sm leading-relaxed text-muted-foreground"
       >
-        I focus on one primary project at a time. Everything else is paused
-        intentionally — not abandoned.
+        I build across hardware and software — from embedded systems and
+        robotics prototypes to AI-powered products.
       </motion.p>
 
-      {projects
-        .filter((p) => p.status === "active")
-        .map((project, i) => (
-          <motion.div
-            key={project.name}
-            custom={i + 3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="mb-4"
-          >
-            <Link
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block rounded-lg border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/[0.03] p-7 transition-all hover:border-[var(--accent-green)]/40 hover:bg-[var(--accent-green)]/[0.05]"
-            >
-              <div className="flex items-start justify-between gap-4 mb-1">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg font-semibold text-foreground group-hover:text-[var(--accent-green)] transition-colors">
-                    {project.name}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium border border-[var(--accent-green)]/25 text-[var(--accent-green)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
-                    active
+      {/* Hardware & Robotics */}
+      <div className="mb-24">
+        <motion.div
+          custom={3}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mb-6"
+        >
+          <SectionLabel number="01">Hardware & Robotics</SectionLabel>
+        </motion.div>
+
+        {/* Featured robot */}
+        <motion.div
+          custom={4}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mb-4"
+        >
+          <div className="group rounded-lg border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/[0.03] p-7 transition-all hover:border-[var(--accent-green)]/40 hover:bg-[var(--accent-green)]/[0.05]">
+            <div className="mb-3 flex items-start justify-between gap-4">
+              <div>
+                <div className="mb-2 flex flex-wrap items-baseline gap-3">
+                  <h3 className="text-lg font-semibold text-foreground transition-colors group-hover:text-[var(--accent-green)]">
+                    {hardwareProjects[0].name}
+                  </h3>
+
+                  <span className="text-xs text-muted-foreground/40">
+                    {hardwareProjects[0].year}
                   </span>
                 </div>
-                <span className="text-muted-foreground/40 group-hover:text-[var(--accent-green)] transition-colors">
-                  <ArrowUpRight />
+
+                <span className="text-xs uppercase tracking-widest text-[var(--accent-green)]/50">
+                  {hardwareProjects[0].category}
                 </span>
               </div>
 
-              <p className="text-xs text-muted-foreground/40 mb-4">
-                {project.year}
-              </p>
+              <span className="text-[var(--accent-green)]/40 transition-colors group-hover:text-[var(--accent-green)]">
+                <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-[var(--accent-green)]" />
+              </span>
+            </div>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                {project.description}
-              </p>
+            <p className="mb-5 mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {hardwareProjects[0].description}
+            </p>
 
-              <div className="flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center rounded px-2 py-0.5 text-xs border border-[var(--accent-green)]/15 text-[var(--accent-green)]/60"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          </motion.div>
-        ))}
+            <div className="flex flex-wrap gap-1.5">
+              {hardwareProjects[0].stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-flex items-center rounded border border-[var(--accent-green)]/15 px-2 py-0.5 text-xs text-[var(--accent-green)]/60"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
 
-      <motion.div
-        custom={4}
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        className="flex items-center gap-4 my-8"
-      >
-        <div className="h-px flex-1 bg-border/60" />
-        <span className="text-xs text-muted-foreground/30 tracking-widest uppercase">
-          Previous
-        </span>
-        <div className="h-px flex-1 bg-border/60" />
-      </motion.div>
-
-      <div className="flex flex-col divide-y divide-border/40">
-        {projects
-          .filter((p) => p.status === "paused")
-          .map((project, i) => (
+        {/* Other hardware projects */}
+        <div className="flex flex-col divide-y divide-border/40">
+          {hardwareProjects.slice(1).map((project, i) => (
             <motion.div
               key={project.name}
               custom={i + 5}
               variants={fadeUp}
               initial="hidden"
-              animate="show"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <div className="group py-7">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-2 flex flex-wrap items-baseline gap-3">
+                      <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-[var(--accent-green)]">
+                        {project.name}
+                      </h3>
+
+                      <span className="text-xs text-muted-foreground/40">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-flex items-center rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Software & AI */}
+      <div>
+        <motion.div
+          custom={7}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mb-6"
+        >
+          <SectionLabel number="02">Software & AI</SectionLabel>
+        </motion.div>
+
+        <div className="flex flex-col divide-y divide-border/40">
+          {softwareProjects.map((project, i) => (
+            <motion.div
+              key={project.name}
+              custom={i + 8}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
               <Link
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start justify-between gap-6 py-6 opacity-60 hover:opacity-80 transition-opacity"
+                className="group block py-7 transition-opacity hover:opacity-90"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="text-sm font-semibold text-foreground">
-                      {project.name}
-                    </span>
-                    <span className="text-xs text-muted-foreground/40">
-                      {project.year}
-                    </span>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="inline-flex items-center rounded px-2 py-0.5 text-xs border border-border text-muted-foreground/50"
-                      >
-                        {tech}
+                <div className="flex items-start justify-between gap-6">
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-2 flex flex-wrap items-baseline gap-3">
+                      <h3 className="text-base font-semibold text-foreground transition-colors group-hover:text-[var(--accent-green)]">
+                        {project.name}
+                      </h3>
+
+                      <span className="text-xs text-muted-foreground/40">
+                        {project.year}
                       </span>
-                    ))}
+                    </div>
+
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-flex items-center rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+
+                  <span className="mt-1 text-muted-foreground/30 transition-colors group-hover:text-[var(--accent-green)]">
+                    <ArrowUpRight />
+                  </span>
                 </div>
-                <span className="mt-0.5 text-muted-foreground/30 group-hover:text-muted-foreground transition-colors">
-                  <ArrowUpRight />
-                </span>
               </Link>
             </motion.div>
           ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
+

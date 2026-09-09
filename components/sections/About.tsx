@@ -16,16 +16,22 @@ const fadeUp = {
 };
 
 const stack = [
-  { label: "Next.js", highlight: true },
-  { label: "FastAPI", highlight: true },
-  { label: "GPT / Claude APIs", highlight: true },
-  { label: "MVP Building", highlight: true },
-  { label: "PostgreSQL", highlight: false },
-  { label: "Vercel", highlight: false },
-  { label: "Digital Ocean", highlight: false },
-  { label: "Tailwind CSS", highlight: false },
+  { label: "Robotics", highlight: true },
+  { label: "Embedded Systems", highlight: true },
+  { label: "ESP32", highlight: true },
+  { label: "Arduino", highlight: true },
+  { label: "Embedded C/C++", highlight: true },
+  { label: "Python", highlight: true },
+  { label: "Sensors & Actuators", highlight: false },
+  { label: "Fusion 360", highlight: false },
+  { label: "Blender", highlight: false },
+  { label: "CAD / 3D Design", highlight: false },
+  { label: "IoT", highlight: false },
+  { label: "Computer Vision", highlight: false },
+  { label: "AI", highlight: false },
+  { label: "Next.js", highlight: false },
   { label: "TypeScript", highlight: false },
-  { label: "Python", highlight: false },
+  { label: "FastAPI", highlight: false },
 ];
 
 export default function About() {
@@ -38,14 +44,14 @@ export default function About() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="text-xs font-medium tracking-widest uppercase text-muted-foreground/50 mb-10"
+        className="mb-10 text-xs font-medium uppercase tracking-widest text-muted-foreground/50"
       >
         About
       </motion.p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-12">
+      <div className="grid grid-cols-1 gap-12 sm:grid-cols-[1fr_auto]">
         {/* Left — text */}
-        <div className="space-y-5 max-w-lg">
+        <div className="max-w-lg space-y-5">
           <motion.p
             custom={1}
             variants={fadeUp}
@@ -54,11 +60,14 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-foreground"
           >
-            I'm a final-year student turned solopreneur. I build and ship
-            products independently — currently focused on{" "}
-            <span className="text-[var(--accent-green)]">Nexra</span>, an AI
-            thinking partner that challenges founders instead of just validating
-            them.
+            I'm a robotics and embedded systems builder exploring the
+            intersection of{" "}
+            <span className="text-[var(--accent-green)]">
+              hardware, software, and AI
+            </span>
+            . I learn by building — designing prototypes, connecting sensors
+            and actuators, writing firmware, and turning ideas into working
+            systems.
           </motion.p>
 
           <motion.p
@@ -69,12 +78,28 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-muted-foreground"
           >
-            On the side, I take contract work — AI integrations, full-stack MVP development, and product management for startups and solo founders. I
-            move fast, communicate clearly, and ship working products.
+            My current work ranges from expressive desktop robots and IoT
+            experiments to AI-powered software products. I'm particularly
+            interested in machines that can sense, understand, and interact
+            with the world around them.
           </motion.p>
 
           <motion.p
             custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-base leading-relaxed text-muted-foreground"
+          >
+            I also build software products independently, including{" "}
+            <span className="text-foreground">Nexra</span>, while continuing
+            to explore robotics, embedded systems, computer vision, and
+            intelligent machines.
+          </motion.p>
+
+          <motion.p
+            custom={4}
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
@@ -86,7 +111,7 @@ export default function About() {
               href="https://x.com/@Annu_NexraAI"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+              className="text-foreground underline underline-offset-4 decoration-border transition-colors hover:decoration-foreground"
             >
               X
             </a>{" "}
@@ -95,7 +120,7 @@ export default function About() {
               href="https://www.youtube.com/@nexralab-ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+              className="text-foreground underline underline-offset-4 decoration-border transition-colors hover:decoration-foreground"
             >
               YouTube
             </a>
@@ -106,24 +131,25 @@ export default function About() {
 
       {/* Stack */}
       <motion.div
-        custom={4}
+        custom={5}
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
         className="mt-12"
       >
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/50 mb-4">
-          Stack
+        <p className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground/50">
+          Technical Focus
         </p>
+
         <div className="flex flex-wrap gap-2">
           {stack.map((item) => (
             <span
               key={item.label}
               className={
                 item.highlight
-                  ? "inline-flex items-center rounded-md px-3 py-1 text-xs font-medium border border-[var(--accent-green)]/20 text-[var(--accent-green)] bg-[var(--accent-green)]/5"
-                  : "inline-flex items-center rounded-md px-3 py-1 text-xs font-medium border border-border text-muted-foreground"
+                  ? "inline-flex items-center rounded-md border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/5 px-3 py-1 text-xs font-medium text-[var(--accent-green)]"
+                  : "inline-flex items-center rounded-md border border-border px-3 py-1 text-xs font-medium text-muted-foreground"
               }
             >
               {item.label}

@@ -16,142 +16,196 @@ const fadeUp: Variants = {
   }),
 };
 
-const services = [
+const focusAreas = [
   {
     number: "01",
-    title: "AI Integrations",
+    title: "Robotics & Embedded Systems",
     description:
-      "Plug GPT, Claude, or custom LLM workflows into your existing product or build one from scratch. I've built streaming AI responses, custom system prompts, topic guards, URL readers, and multi-turn conversation modes.",
-    deliverables: [
-      "LLM API integration",
-      "Custom prompt engineering",
-      "Streaming & real-time responses",
+      "Building physical systems with microcontrollers, sensors, actuators, and custom firmware. My current work focuses on ESP32 and Arduino-based prototypes, robot behaviors, motion sensing, displays, and hardware interaction.",
+    technologies: [
+      "ESP32",
+      "Arduino",
+      "Embedded C/C++",
+      "Sensors & Actuators",
     ],
   },
   {
     number: "02",
-    title: "Product Management",
+    title: "Intelligent Machines",
     description:
-      "Structured thinking for early-stage products. I help founders translate messy ideas into clear roadmaps, prioritize ruthlessly, and ship what actually matters — without the overhead of a full PM hire.",
-    deliverables: [
-      "Product roadmap & prioritization",
-      "User story mapping",
-      "Feature scoping & PRDs",
+      "Exploring how software and AI can make physical systems more aware, responsive, and interactive. I'm interested in perception, computer vision, behavioral systems, and machines that can sense and respond to their environment.",
+    technologies: [
+      "AI",
+      "Computer Vision",
+      "Machine Perception",
+      "Behavior Systems",
     ],
   },
   {
     number: "03",
-    title: "Full-Stack MVP Build",
+    title: "Software & AI Systems",
     description:
-      "End-to-end product builds using Next.js, TypeScript, FastAPI, PostgreSQL, and AI APIs — deployed on Digital Ocean. I handle the full stack so you don't have to stitch together five freelancers.",
-    deliverables: [
-      "Next.js + TypeScript frontend",
-      "FastAPI + PostgreSQL backend",
-      "AI API integration & DO deployment",
+      "Building software systems across the frontend and backend — from responsive interfaces and APIs to AI integrations and full-stack products.",
+    technologies: [
+      "Python",
+      "Next.js",
+      "FastAPI",
+      "TypeScript",
+      "AI APIs",
+    ],
+  },
+  {
+    number: "04",
+    title: "CAD & Physical Design",
+    description:
+      "Learning and applying digital design tools to turn hardware concepts into physical prototypes. Currently exploring CAD, 3D modeling, and enclosure design as part of my robotics work.",
+    technologies: [
+      "Fusion 360",
+      "Blender",
+      "CAD",
+      "3D Design",
     ],
   },
 ];
 
+const opportunities = [
+  "Frontend Engineering",
+  "Backend Engineering",
+  "Full-Stack Engineering",
+  "Robotics",
+  "Embedded Systems",
+  "IoT",
+  "AI / Intelligent Systems",
+];
+
 export default function ServicesPage() {
   return (
-    <div id="services" className="mx-auto max-w-3xl px-6 pt-32 pb-24">
+    <section
+      id="services"
+      className="mx-auto max-w-3xl px-6 pt-32 pb-24"
+    >
       {/* Header */}
       <motion.p
         custom={0}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground/40"
       >
-        Services
+        Technical Focus
       </motion.p>
 
-      <motion.h1
+      <motion.h2
         custom={1}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-3xl font-bold tracking-tight mb-3"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-3 text-3xl font-bold tracking-tight"
       >
-        Available for contract work
-      </motion.h1>
+        Building across hardware & software
+      </motion.h2>
 
       <motion.p
         custom={2}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-muted-foreground text-sm leading-relaxed mb-16 max-w-md"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-16 max-w-lg text-sm leading-relaxed text-muted-foreground"
       >
-        I take on part-time and short-term contracts alongside my own projects.
-        Fast communication, clean work, no hand-holding needed.
+        I'm exploring the full stack of intelligent machines — from electronics
+        and embedded firmware to software, AI, and physical design.
       </motion.p>
 
-      {/* Services */}
-      <div className="flex flex-col gap-px border border-border/50 rounded-lg overflow-hidden">
-        {services.map((service, i) => (
+      {/* Focus Areas */}
+      <div className="flex flex-col gap-px overflow-hidden rounded-lg border border-border/50">
+        {focusAreas.map((area, i) => (
           <motion.div
-            key={service.number}
+            key={area.number}
             custom={i + 3}
             variants={fadeUp}
             initial="hidden"
-            animate="show"
-            className="group bg-card p-7 hover:bg-card/60 transition-colors border-b border-border/50 last:border-b-0"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="group border-b border-border/50 bg-card p-7 transition-colors last:border-b-0 hover:bg-card/60"
           >
             <div className="flex items-start gap-6">
               {/* Number */}
-              <span className="text-xs font-mono text-muted-foreground/30 mt-1 w-6 shrink-0">
-                {service.number}
+              <span className="mt-1 w-6 shrink-0 font-mono text-xs text-muted-foreground/30">
+                {area.number}
               </span>
 
               {/* Content */}
-              <div className="flex-1 min-w-0">
-                <h2 className="text-base font-semibold text-foreground mb-3">
-                  {service.title}
-                </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                  {service.description}
+              <div className="min-w-0 flex-1">
+                <h3 className="mb-3 text-base font-semibold text-foreground transition-colors group-hover:text-[var(--accent-green)]">
+                  {area.title}
+                </h3>
+
+                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                  {area.description}
                 </p>
-                <ul className="flex flex-col gap-1.5">
-                  {service.deliverables.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2 text-xs text-muted-foreground/60"
+
+                <div className="flex flex-wrap gap-1.5">
+                  {area.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="inline-flex items-center rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60"
                     >
-                      <span className="w-1 h-1 rounded-full bg-[var(--accent-green)]/50 shrink-0" />
-                      {item}
-                    </li>
+                      {technology}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* CTA */}
+      {/* Open to Opportunities */}
       <motion.div
-        custom={7}
+        custom={8}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-lg border border-border/50 bg-card p-7"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mt-14 rounded-lg border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/[0.03] p-7"
       >
-        <div>
-          <p className="text-sm font-semibold text-foreground mb-1">
-            Ready to work together?
+        <div className="mb-5">
+          <p className="mb-2 text-xs font-medium uppercase tracking-widest text-[var(--accent-green)]/60">
+            Opportunities
           </p>
-          <p className="text-sm text-muted-foreground">
-            I'm currently available for part-time contracts.
+
+          <h3 className="mb-2 text-base font-semibold text-foreground">
+            Open to engineering opportunities
+          </h3>
+
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+            I'm looking for opportunities where I can contribute, learn, and
+            build across software, robotics, embedded systems, IoT, and
+            intelligent machines.
           </p>
         </div>
+
+        <div className="mb-6 flex flex-wrap gap-1.5">
+          {opportunities.map((opportunity) => (
+            <span
+              key={opportunity}
+              className="inline-flex items-center rounded border border-[var(--accent-green)]/15 px-2.5 py-1 text-xs text-[var(--accent-green)]/65"
+            >
+              {opportunity}
+            </span>
+          ))}
+        </div>
+
         <Link
           href="/contact"
-          className="shrink-0 inline-flex items-center justify-center rounded-md bg-foreground text-background text-sm font-medium px-5 py-2.5 transition-opacity hover:opacity-85"
+          className="inline-flex items-center justify-center rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
         >
           Get in touch
         </Link>
       </motion.div>
-    </div>
+    </section>
   );
 }

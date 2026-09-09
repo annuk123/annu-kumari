@@ -16,201 +16,311 @@ const fadeUp: Variants = {
   }),
 };
 
+const focusAreas = [
+  {
+    number: "01",
+    title: "Robotics & Embedded Systems",
+    description:
+      "Building physical systems with microcontrollers, sensors, actuators, and custom firmware. My current work focuses on ESP32 and Arduino-based prototypes, robot behaviors, motion sensing, displays, and hardware interaction.",
+    technologies: [
+      "ESP32",
+      "Arduino",
+      "Embedded C/C++",
+      "Sensors & Actuators",
+    ],
+  },
+  {
+    number: "02",
+    title: "Computer Vision & AI",
+    description:
+      "Exploring perception, intelligent behavior, and the ways AI can make physical systems more aware and responsive. I'm interested in computer vision, machine perception, behavioral systems, and intelligent interaction.",
+    technologies: [
+      "Computer Vision",
+      "AI",
+      "Machine Perception",
+      "Behavior Systems",
+    ],
+  },
+  {
+    number: "03",
+    title: "CAD & 3D Design",
+    description:
+      "Learning and applying digital design tools to turn hardware concepts into physical prototypes. Currently exploring CAD, 3D modeling, enclosure design, and mechanical concepts alongside my robotics work.",
+    technologies: [
+      "Fusion 360",
+      "Blender",
+      "CAD",
+      "3D Design",
+    ],
+  },
+];
+
+const opportunities = [
+  "Frontend Engineering",
+  "Backend Engineering",
+  "Full-Stack Engineering",
+  "Robotics",
+  "Embedded Systems",
+  "IoT",
+  "AI / Intelligent Systems",
+];
+
 export default function NowPage() {
   return (
-    <div id="now" className="mx-auto max-w-3xl px-6 pt-32 pb-24">
+    <section
+      id="now"
+      className="mx-auto max-w-3xl px-6 pt-32 pb-24"
+    >
       {/* Header */}
       <motion.p
         custom={0}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-4 text-xs font-medium uppercase tracking-widest text-muted-foreground/40"
       >
         Now
       </motion.p>
 
-      <motion.h1
+      <motion.h2
         custom={1}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="text-3xl font-bold tracking-tight mb-3"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-3 text-3xl font-bold tracking-tight"
       >
-        What I'm focused on
-      </motion.h1>
+        What I&apos;m focused on right now
+      </motion.h2>
 
-      <motion.div
+      <motion.p
         custom={2}
         variants={fadeUp}
         initial="hidden"
-        animate="show"
-        className="flex items-center gap-3 mb-16"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-4 max-w-lg text-sm leading-relaxed text-muted-foreground"
       >
-        <span className="text-xs text-muted-foreground/40">April 2026</span>
-        <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
-        <span className="text-xs text-muted-foreground/40">Ranchi, India</span>
-        <span className="w-1 h-1 rounded-full bg-muted-foreground/20" />
-        <span className="inline-flex items-center gap-1.5 text-xs text-[var(--accent-green)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
-          live snapshot
-        </span>
-      </motion.div>
+        Building, learning, and experimenting across robotics, embedded
+        systems, software, AI, and physical design.
+      </motion.p>
+
+      <motion.p
+        custom={3}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-16 text-xs text-muted-foreground/40"
+      >
+        September 2026 · Ranchi, India · live snapshot
+      </motion.p>
 
       {/* Building */}
-      <motion.div custom={3} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4">
+      <motion.div
+        custom={4}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-14"
+      >
+        <p className="mb-5 text-xs font-medium uppercase tracking-widest text-muted-foreground/40">
           Building
         </p>
-        <Link
-          href="https://nexralab.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group block rounded-lg border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/[0.03] p-6 hover:border-[var(--accent-green)]/40 transition-all"
-        >
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <span className="text-base font-semibold text-foreground group-hover:text-[var(--accent-green)] transition-colors">
-                Nexra
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs border border-[var(--accent-green)]/25 text-[var(--accent-green)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
-                active
-              </span>
+
+        <div className="rounded-lg border border-border/50 bg-card p-7">
+          <div className="mb-5 flex items-start justify-between gap-4">
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--accent-green)]" />
+                <span className="text-xs font-medium uppercase tracking-widest text-[var(--accent-green)]/60">
+                  Current build
+                </span>
+              </div>
+
+              <h3 className="text-base font-semibold text-foreground">
+                Desktop Companion Robot
+              </h3>
             </div>
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="text-muted-foreground/30 group-hover:text-[var(--accent-green)] transition-colors mt-1">
-              <path d="M2.5 11.5L11.5 2.5M11.5 2.5H4.5M11.5 2.5V9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+
+            <span className="shrink-0 rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60">
+              Robotics
+            </span>
           </div>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            Focused on distribution and early traction. Posting build-in-public
-            content, engaging with founder communities, and iterating on
-            positioning.
+
+          <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+            Building and iterating on an ESP32-based desktop companion robot
+            with expressive OLED eyes, motion sensing, servo movement, touch
+            interaction, proximity sensing, and custom behavioral logic.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {["Distribution", "Build in public", "Positioning", "Early traction"].map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded border border-[var(--accent-green)]/15 text-[var(--accent-green)]/60">
-                {tag}
+
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              "ESP32",
+              "OLED",
+              "MPU6050",
+              "Servo",
+              "Touch",
+              "Ultrasonic",
+              "Embedded C/C++",
+            ].map((technology) => (
+              <span
+                key={technology}
+                className="inline-flex items-center rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60"
+              >
+                {technology}
               </span>
             ))}
           </div>
+        </div>
+      </motion.div>
+
+      {/* Learning & Exploring */}
+      <motion.div
+        custom={5}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-14"
+      >
+        <p className="mb-5 text-xs font-medium uppercase tracking-widest text-muted-foreground/40">
+          Learning &amp; Exploring
+        </p>
+
+        <div className="flex flex-col gap-px overflow-hidden rounded-lg border border-border/50">
+          {focusAreas.map((area, i) => (
+            <motion.div
+              key={area.number}
+              custom={i + 6}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="group border-b border-border/50 bg-card p-7 transition-colors last:border-b-0 hover:bg-card/60"
+            >
+              <div className="flex items-start gap-6">
+                <span className="mt-1 w-6 shrink-0 font-mono text-xs text-muted-foreground/30">
+                  {area.number}
+                </span>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="mb-3 text-base font-semibold text-foreground transition-colors group-hover:text-[var(--accent-green)]">
+                    {area.title}
+                  </h3>
+
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                    {area.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {area.technologies.map((technology) => (
+                      <span
+                        key={technology}
+                        className="inline-flex items-center rounded border border-border px-2 py-0.5 text-xs text-muted-foreground/60"
+                      >
+                        {technology}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Next */}
+      <motion.div
+        custom={10}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-14"
+      >
+        <p className="mb-5 text-xs font-medium uppercase tracking-widest text-muted-foreground/40">
+          Next
+        </p>
+
+        <div className="rounded-lg border border-border/50 bg-card p-7">
+          <h3 className="mb-3 text-base font-semibold text-foreground">
+            More physical prototypes
+          </h3>
+
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            Expanding from the current desktop robot into more robotics and
+            IoT experiments, including drones, mobile systems, computer vision,
+            and eventually more advanced human-machine interfaces and
+            bionic-style systems.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Open to Opportunities */}
+      <motion.div
+        custom={11}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mb-14 rounded-lg border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/[0.03] p-7"
+      >
+        <div className="mb-5">
+          <p className="mb-2 text-xs font-medium uppercase tracking-widest text-[var(--accent-green)]/60">
+            Opportunities
+          </p>
+
+          <h3 className="mb-2 text-base font-semibold text-foreground">
+            Open to engineering opportunities
+          </h3>
+
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+            I&apos;m looking for opportunities where I can contribute, learn,
+            and build across software, robotics, embedded systems, IoT, and
+            intelligent machines.
+          </p>
+        </div>
+
+        <div className="mb-6 flex flex-wrap gap-1.5">
+          {opportunities.map((opportunity) => (
+            <span
+              key={opportunity}
+              className="inline-flex items-center rounded border border-[var(--accent-green)]/15 px-2.5 py-1 text-xs text-[var(--accent-green)]/65"
+            >
+              {opportunity}
+            </span>
+          ))}
+        </div>
+
+        <Link
+          href="/contact"
+          className="inline-flex items-center justify-center rounded-md bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
+        >
+          Get in touch
         </Link>
       </motion.div>
 
-      {/* Learning */}
-      <motion.div custom={4} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4">
-          Learning
+      {/* Outside Work */}
+      <motion.div
+        custom={12}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <p className="mb-5 text-xs font-medium uppercase tracking-widest text-muted-foreground/40">
+          Outside Work
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            {
-              title: "Japanese",
-              detail: "Hiragana done, working through basic vocabulary. Slow and steady.",
-              progress: 55,
-              tag: "language",
-            },
-            {
-              title: "Distribution & growth",
-              detail: "How small products find their first users without paid ads.",
-              progress: 50,
-              tag: "business",
-            },
-          ].map((item) => (
-            <div key={item.title} className="rounded-lg border border-border/40 bg-card p-5">
-              <div className="flex items-start justify-between mb-2">
-                <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                <span className="text-xs text-muted-foreground/40 border border-border/40 rounded px-2 py-0.5">
-                  {item.tag}
-                </span>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                {item.detail}
-              </p>
-              {/* Progress bar */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between">
-                  <span className="text-xs text-muted-foreground/30">Progress</span>
-                  <span className="text-xs text-muted-foreground/30">{item.progress}%</span>
-                </div>
-                <div className="h-1 w-full rounded-full bg-border/40 overflow-hidden">
-                  <div
-                    className="h-full rounded-full bg-[var(--accent-green)]/50"
-                    style={{ width: `${item.progress}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+
+        <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
+          <span>Nature photography</span>
+          <span>Japanese</span>
+          <span>Building in public</span>
         </div>
       </motion.div>
-
-      {/* Preparing for */}
-      <motion.div custom={5} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4">
-          Preparing for
-        </p>
-        <div className="flex flex-col gap-3">
-          {[
-            {
-              title: "Graduation",
-              detail: "Final year of CS. Done in ~20 days. Moving to Dehradun to work independently full-time.",
-              countdown: "~20 days",
-            },
-            {
-  title: "Contract & Remote Work",
-  detail: "Open to part-time remote Internships, or contracts — AI integrations, full-stack MVPs, and product management — to fund the runway while building Nexra.",
-  countdown: "open now",
-},
-          ].map((item) => (
-            <div key={item.title} className="flex items-start gap-4 rounded-lg border border-border/40 bg-card p-5">
-              <div className="shrink-0 rounded-md border border-border/50 bg-background px-2.5 py-1.5 text-center min-w-[72px]">
-                <p className="text-xs font-mono text-[var(--accent-green)] font-medium leading-none">
-                  {item.countdown}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground mb-1">{item.title}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">{item.detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Outside work */}
-      <motion.div custom={6} variants={fadeUp} initial="hidden" animate="show" className="mb-16">
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground/40 mb-4">
-          Outside work
-        </p>
-        <div className="flex flex-wrap gap-3">
-          {[
-            { label: "📷 Nature photography", href: "/photography" },
-            { label: "🇯🇵 Learning Japanese", href: null },
-            { label: "✍️ Build in public on X", href: "https://x.com/Annu66126617" },
-          ].map((item) =>
-            item.href ? (
-              <Link
-                key={item.label}
-                href={item.href}
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-border/50 bg-card px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:border-border transition-colors"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <span
-                key={item.label}
-                className="inline-flex items-center rounded-full border border-border/50 bg-card px-4 py-2 text-xs text-muted-foreground"
-              >
-                {item.label}
-              </span>
-            )
-          )}
-        </div>
-      </motion.div>
-
-    </div>
+    </section>
   );
 }

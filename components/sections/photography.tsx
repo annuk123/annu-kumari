@@ -104,9 +104,8 @@ export default function PhotographyPage() {
         animate="show"
         className="text-muted-foreground text-sm leading-relaxed mb-16 max-w-md"
       >
-        When I'm not building software, I'm outside with a camera. Landscapes,
-        light, and quiet places. Some of it ends up on Shutterstock — most of
-        it just stays as a reminder to slow down.
+       When I'm not building robots or software, I'm usually learning something new, experimenting with ideas, or exploring with a camera. I'm naturally curious — I like understanding how things work and then trying to build something myself.
+
       </motion.p>
 
       {/* Photo grid */}

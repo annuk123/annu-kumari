@@ -6,7 +6,7 @@ import NowPage from "@/components/sections/now";
 import Notes from "./notes/page";
 import ContactPage from "@/components/sections/contact";
 import PhotographyPage from "@/components/sections/photography";
-import JapaneseSection from "@/components/sections/JapaneseSection";
+import JapaneseSection from "@/components/sections/AmericanAccentSection";
 export default function Home() {
   return (
     <main>
