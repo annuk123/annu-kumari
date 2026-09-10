@@ -1,25 +1,32 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
+
 import { ClerkProvider } from "@clerk/nextjs";
+
 import { ConvexClientProvider } from "@/components/ConvexClient/ConvexClientProvider";
+
 import { Analytics } from "@vercel/analytics/next";
+
 import "highlight.js/styles/github-dark.css";
+
 import { Geist } from "next/font/google";
+
 import { cn } from "@/lib/utils";
+
 import Navbar from "@/components/layout/Navbar";
+
 import Footer from "@/components/layout/Footer";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-
-// export const metadata: Metadata = {
-//   title: "Annu Kumari",
-//   description: "Solopreneur building AI products. Available for contract work.",
-// };
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
-  title: "Annu Kumari - AI Product Builder",
+  title: "Annu Kumari — Robotics, Embedded Systems & AI",
   description:
-    "Solopreneur building AI products. Available for contract work. Fast, focused, and no bloat.",
+    "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI. Building intelligent machines and systems through hands-on projects.",
 
   icons: {
     icon: "/icon.png",
@@ -28,8 +35,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Annu Kumari - AI Product Builder",
-    description: "Solopreneur building AI products. Available for contract work.",
+    title: "Annu Kumari — Robotics, Embedded Systems & AI",
+    description:
+      "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI.",
     url: "https://annu-kumari.nexralab.com",
     siteName: "Annu Kumari",
     images: [
@@ -37,7 +45,7 @@ export const metadata: Metadata = {
         url: "/annu.png",
         width: 1200,
         height: 630,
-        alt: "Annu Kumari",
+        alt: "Annu Kumari — Robotics, Embedded Systems & AI",
       },
     ],
     type: "website",
@@ -45,8 +53,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Annu Kumari - AI Product Builder",
-    description: "Solopreneur building AI products. Available for contract work.",
+    title: "Annu Kumari — Robotics, Embedded Systems & AI",
+    description:
+      "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI.",
     images: ["/annu.png"],
   },
 };
