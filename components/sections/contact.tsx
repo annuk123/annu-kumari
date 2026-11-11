@@ -7,8 +7,8 @@ const ACCENT = "#D9A85F";
 const links = [
   { label: "EMAIL", value: "annu@nexralab.com", href: "mailto:annu@nexralab.com" },
   { label: "GITHUB", value: "github.com/annuk123", href: "https://github.com/annuk123" },
-  { label: "LINKEDIN", value: "linkedin.com/in/annu-kumari-540337237/", href: "inkedin.com/in/annu-kumari-540337237/" },
-  { label: "RESUME", value: "Download PDF", href: "/resume.pdf" },
+  { label: "LINKEDIN", value: "linkedin.com/in/annu-kumari-540337237/", href: "linkedin.com/in/annu-kumari-540337237/" },
+  { label: "RESUME", value: "Download PDF", href: "https://drive.google.com/file/d/1ZZeHWg5fzn2B9rVe2U7UQwVs9I1EajpP/view?usp=drive_link" },
 ];
 
 export default function Contact() {
@@ -57,7 +57,7 @@ export default function Contact() {
             </p>
 
             <a
-              href="mailto:annu@nexralab.co"
+              href="mailto:annu@nexralab.com"
               className="mt-8 inline-block rounded-md px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[#0B0D10] transition-colors hover:bg-white"
               style={{ background: ACCENT }}
             >

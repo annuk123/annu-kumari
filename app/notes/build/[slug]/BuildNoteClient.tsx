@@ -1,66 +1,41 @@
-// "use client";
-
-// import { useQuery } from "convex/react";
-// import { api } from "@/convex/_generated/api";
-// import { Id } from "@/convex/_generated/dataModel";
-// import ReactMarkdown from "react-markdown";
-// import Link from "next/link";
-
-// export default function BuildNoteClient({ id }: { id?: string }) {
-//   const post = useQuery(
-//   api.buildNotes.getByIdPublic,
-//   id ? { id: id as Id<"buildNotes"> } : "skip"
-// );
-
-
-//   if (post === undefined) return <p>Loading…</p>;
-//   if (post === null) return <p>Not found.</p>;
-
-//   return (
-//     <main className="max-w-xl mx-auto px-6 py-16 space-y-10">
-//       <Link href="/notes" className="text-sm text-neutral-500">
-//         ← Back
-//       </Link>
-
-//       <h1 className="text-2xl font-medium">{post.title}</h1>
-
-//       <article className="prose">
-//         <ReactMarkdown>{post.content}</ReactMarkdown>
-//       </article>
-//     </main>
-//   );
-// }
-
 "use client";
 
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import rehypeHighlight from "rehype-highlight";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.07,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  }),
-};
+const ACCENT = "#D9A85F";
 
 function formatDate(timestamp: number) {
-  return new Date(timestamp).toLocaleDateString("en-US", {
+  return new Date(timestamp).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+}
+
+function BackLink() {
+  return (
+    <Link
+      href="/#build-log"
+      className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-[#D9A85F]"
+    >
+      ← Build log
+    </Link>
+  );
+}
+
+function Shell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen bg-[#0B0D10] text-[#E6E6E6]">
+      <div className="mx-auto max-w-3xl px-6 pb-24 pt-32">{children}</div>
+    </div>
+  );
 }
 
 export default function BuildNoteClient({ slug }: { slug?: string }) {
@@ -71,89 +46,90 @@ export default function BuildNoteClient({ slug }: { slug?: string }) {
 
   if (post === undefined) {
     return (
-      <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
-        <div className="h-8 w-48 rounded bg-card/50 animate-pulse mb-4" />
-        <div className="h-4 w-full rounded bg-card/50 animate-pulse mb-2" />
-        <div className="h-4 w-3/4 rounded bg-card/50 animate-pulse" />
-      </div>
+      <Shell>
+        <div className="mb-4 h-8 w-64 animate-pulse rounded-lg bg-white/[0.04]" />
+        <div className="mb-2 h-4 w-full animate-pulse rounded-lg bg-white/[0.04]" />
+        <div className="h-4 w-3/4 animate-pulse rounded-lg bg-white/[0.04]" />
+      </Shell>
     );
   }
 
   if (!post) {
     return (
-      <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
-        <p className="text-sm text-muted-foreground mb-4">Note not found.</p>
-        <Link
-          href="/"
-          className="text-sm text-foreground underline underline-offset-4"
-        >
-          Back to notes
-        </Link>
-      </div>
+      <Shell>
+        <p className="mb-6 font-mono text-[12px] text-white/50">
+          {"// note not found"}
+        </p>
+        <BackLink />
+      </Shell>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
-      {/* Back */}
-      <motion.div custom={0} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
-        <Link
-          href="/"
-          className="text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors inline-flex items-center gap-1.5"
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path
-              d="M9.5 6H2.5M2.5 6L5.5 3M2.5 6L5.5 9"
-              stroke="currentColor"
-              strokeWidth="1.3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          All notes
-        </Link>
-      </motion.div>
-
-      {/* Header */}
-      <motion.div custom={1} variants={fadeUp} initial="hidden" animate="show" className="mb-10">
-        <h1 className="text-2xl font-bold tracking-tight mb-3">{post.title}</h1>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">{post.summary}</p>
-        <p className="text-xs text-muted-foreground/40">{formatDate(post.createdAt)}</p>
-      </motion.div>
-
+    <Shell>
       <motion.div
-        custom={2}
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        className="h-px bg-border/50 mb-10"
-      />
-
-      {/* Content */}
-      <motion.div
-        custom={3}
-        variants={fadeUp}
-        initial="hidden"
-        animate="show"
-        className="prose prose-sm prose-invert max-w-none
-          prose-headings:font-semibold prose-headings:tracking-tight
-          prose-h1:text-xl prose-h2:text-lg prose-h3:text-base
-          prose-p:text-muted-foreground prose-p:leading-relaxed
-          prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-a:decoration-border hover:prose-a:decoration-foreground
-          prose-strong:text-foreground prose-strong:font-semibold
-          prose-code:text-[var(--accent-green)] prose-code:text-xs prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-          prose-pre:bg-card prose-pre:border prose-pre:border-border/50 prose-pre:rounded-lg
-          prose-blockquote:border-l-border/50 prose-blockquote:text-muted-foreground
-          prose-li:text-muted-foreground
-          prose-hr:border-border/40"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
       >
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm, remarkBreaks]}
-          rehypePlugins={[rehypeHighlight]}
+        <div className="mb-10">
+          <BackLink />
+        </div>
+
+        {/* header */}
+        <header className="mb-10 border-b border-white/15 pb-8">
+          <div
+            className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em]"
+            style={{ color: ACCENT }}
+          >
+            {"// Build log"} · {formatDate(post.createdAt)}
+          </div>
+          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            {post.title}
+          </h1>
+          {post.summary && (
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/60 sm:text-base">
+              {post.summary}
+            </p>
+          )}
+        </header>
+
+        {/* content */}
+        <article
+          className="prose prose-sm prose-invert max-w-none sm:prose-base
+            prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-white
+            prose-h2:mt-10 prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-2
+            prose-p:leading-7 prose-p:text-white/65
+            prose-a:text-[#D9A85F] prose-a:underline prose-a:underline-offset-4 prose-a:decoration-[#D9A85F]/40 hover:prose-a:decoration-[#D9A85F]
+            prose-strong:font-semibold prose-strong:text-white
+            prose-code:rounded prose-code:bg-white/[0.06] prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[13px] prose-code:font-normal prose-code:text-[#D9A85F] prose-code:before:content-none prose-code:after:content-none
+            prose-pre:rounded-lg prose-pre:border prose-pre:border-white/15 prose-pre:bg-[#0F1216]
+            [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-inherit [&_pre_code.hljs]:bg-transparent
+            prose-blockquote:border-l-2 prose-blockquote:border-l-[#D9A85F] prose-blockquote:text-white/60
+            prose-li:text-white/65 prose-li:marker:text-white/30
+            prose-hr:border-white/10
+            prose-img:rounded-lg prose-img:border prose-img:border-white/15
+            prose-th:text-white prose-td:text-white/65"
         >
-          {post.content}
-        </ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkBreaks]}
+            rehypePlugins={[rehypeHighlight]}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </article>
+
+        {/* footer */}
+        <div className="mt-16 flex items-center justify-between border-t border-white/15 pt-6">
+          <BackLink />
+          <Link
+            href="/#contact"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-[#D9A85F]"
+          >
+            Get in touch ↗
+          </Link>
+        </div>
       </motion.div>
-    </div>
+    </Shell>
   );
 }

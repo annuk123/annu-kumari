@@ -1,16 +1,19 @@
-import { query } from "./_generated/server";
+import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
 import { requireAdmin } from "./auth";
 
-function slugify(title: string) {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+function slugify(text: string) {
+  return (
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "") || "note"
+  );
 }
 
-// Create new build note
+/* ------------------------
+   Admin: create
+------------------------ */
 export const create = mutation({
   args: {
     title: v.string(),
@@ -20,18 +23,17 @@ export const create = mutation({
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx.auth);
-    let slug = args.slug || slugify(args.title);
-     // 2️⃣ Check if slug already exists
+
+    let slug = slugify(args.slug || args.title);
+
     const existing = await ctx.db
       .query("buildNotes")
       .withIndex("by_slug", (q) => q.eq("slug", slug))
       .unique();
 
-    // 3️⃣ If slug exists → add timestamp
-    if (existing) {
-      slug = slug + "-" + Date.now();
-    }
-    return await ctx.db.insert("buildNotes", {
+    if (existing) slug = `${slug}-${Date.now()}`;
+
+    const id = await ctx.db.insert("buildNotes", {
       title: args.title,
       summary: args.summary,
       content: args.content,
@@ -39,10 +41,15 @@ export const create = mutation({
       published: false,
       createdAt: Date.now(),
     });
+
+    // the page redirects to the slug the server actually used
+    return { id, slug };
   },
 });
 
-// Update existing build note
+/* ------------------------
+   Admin: update (keeps the URL stable)
+------------------------ */
 export const update = mutation({
   args: {
     id: v.id("buildNotes"),
@@ -55,21 +62,17 @@ export const update = mutation({
     await requireAdmin(ctx.auth);
 
     const note = await ctx.db.get(args.id);
-    if (!note) {
-      throw new Error("Build note not found");
-    }
+    if (!note) throw new Error("Build note not found");
 
-    let slug = args.slug || slugify(args.title);
+    // keep the existing slug unless a new one is passed on purpose
+    let slug = args.slug ? slugify(args.slug) : note.slug ?? slugify(args.title);
 
-    // 👇 check collision (ignore self)
     const existing = await ctx.db
       .query("buildNotes")
       .withIndex("by_slug", (q) => q.eq("slug", slug))
       .unique();
 
-    if (existing && existing._id !== args.id) {
-      slug = slug + "-" + Date.now();
-    }
+    if (existing && existing._id !== args.id) slug = `${slug}-${Date.now()}`;
 
     await ctx.db.patch(args.id, {
       title: args.title,
@@ -80,45 +83,49 @@ export const update = mutation({
   },
 });
 
-
-
-export const listPublished = query({
-  handler: async (ctx) => {
-    return await ctx.db
-      .query("buildNotes")
-      .withIndex("by_created_at")
-      .filter((q) => q.eq(q.field("published"), true))
-      .order("desc")
-      .collect();
-  },
-});
-
-
-export const getById = query({
-  args: { id: v.id("buildNotes") },
-  handler: async (ctx, args) => {
-    const post = await ctx.db.get(args.id);
-
-    if (!post || !post.published) {
-      return null;
-    }
-
-    return post;
-  },
-});
-
-
+/* ------------------------
+   Admin: publish / delete
+------------------------ */
 export const togglePublished = mutation({
   args: {
     id: v.id("buildNotes"),
     published: v.boolean(),
   },
   handler: async (ctx, args) => {
-    await requireAdmin(ctx.auth); // 🔒 real guard
+    await requireAdmin(ctx.auth);
+    await ctx.db.patch(args.id, { published: args.published });
+  },
+});
 
-    await ctx.db.patch(args.id, {
-      published: args.published,
-    });
+export const remove = mutation({
+  args: { id: v.id("buildNotes") },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx.auth);
+    await ctx.db.delete(args.id);
+  },
+});
+
+/* ------------------------
+   Admin: reads (drafts are private)
+------------------------ */
+export const listAdmin = query({
+  handler: async (ctx) => {
+    await requireAdmin(ctx.auth);
+
+    const notes = await ctx.db
+      .query("buildNotes")
+      .withIndex("by_created_at")
+      .order("desc")
+      .collect();
+
+    return notes.map(({ _id, title, summary, slug, published, createdAt }) => ({
+      _id,
+      title,
+      summary,
+      slug,
+      published,
+      createdAt,
+    }));
   },
 });
 
@@ -127,17 +134,6 @@ export const getByIdAdmin = query({
   handler: async (ctx, args) => {
     await requireAdmin(ctx.auth);
     return await ctx.db.get(args.id);
-  },
-});
-
-export const remove = mutation({
-  args: {
-    id: v.id("buildNotes"),
-  },
-  handler: async (ctx, args) => {
-    await requireAdmin(ctx.auth);
-
-    await ctx.db.delete(args.id);
   },
 });
 
@@ -153,19 +149,26 @@ export const getBySlugAdmin = query({
   },
 });
 
+/* ------------------------
+   Public: published only
+------------------------ */
+export const listPublished = query({
+  handler: async (ctx) => {
+    const notes = await ctx.db
+      .query("buildNotes")
+      .withIndex("by_created_at")
+      .order("desc")
+      .filter((q) => q.eq(q.field("published"), true))
+      .collect();
 
-export const getByIdPublic = query({
-  args: {
-    id: v.id("buildNotes"),
-  },
-  handler: async (ctx, { id }) => {
-    const note = await ctx.db.get(id);
-
-    if (!note || !note.published) {
-      return null;
-    }
-
-    return note;
+    // the list never needs the article body
+    return notes.map(({ _id, title, summary, slug, createdAt }) => ({
+      _id,
+      title,
+      summary,
+      slug,
+      createdAt,
+    }));
   },
 });
 
@@ -177,36 +180,5 @@ export const getBySlugPublic = query({
       .withIndex("by_slug", (q) => q.eq("slug", slug))
       .filter((q) => q.eq(q.field("published"), true))
       .unique();
-  },
-});
-
-export const backfillSlugs = mutation({
-  handler: async (ctx) => {
-    await requireAdmin(ctx.auth);
-
-    const notes = await ctx.db.query("buildNotes").collect();
-
-    function slugify(title: string) {
-      return title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-    }
-
-    for (const note of notes) {
-      if (!note.slug) {
-        let slug = slugify(note.title);
-
-        // prevent duplicates
-        const existing = await ctx.db
-          .query("buildNotes")
-          .withIndex("by_slug", (q) => q.eq("slug", slug))
-          .unique();
-
-        if (existing) slug += "-" + note._id.slice(-4);
-
-        await ctx.db.patch(note._id, { slug });
-      }
-    }
   },
 });

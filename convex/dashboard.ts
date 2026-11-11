@@ -1,33 +1,37 @@
 import { query } from "./_generated/server";
 import { requireAdmin } from "./auth";
 
+const IST_OFFSET = 5.5 * 60 * 60 * 1000;
+const DAY = 24 * 60 * 60 * 1000;
+
 export const getOverview = query({
   handler: async (ctx) => {
     await requireAdmin(ctx.auth);
 
-    const buildNotes = await ctx.db
-      .query("buildNotes")
-      .collect();
+    const buildNotes = await ctx.db.query("buildNotes").collect();
+    const published = buildNotes.filter((n) => n.published).length;
 
-    const pageViews = await ctx.db
-      .query("pageViews")
-      .collect();
+    // start of today in IST
+    const todayStart =
+      Math.floor((Date.now() + IST_OFFSET) / DAY) * DAY - IST_OFFSET;
 
-    const published = buildNotes.filter(n => n.published).length;
-    const drafts = buildNotes.filter(n => !n.published).length;
-
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0);
-
-    const todayViews = pageViews.filter(
-      v => v.createdAt >= todayStart.getTime()
+    const todayViews = (
+      await ctx.db
+        .query("pageViews")
+        .withIndex("by_created_at", (q) => q.gte("createdAt", todayStart))
+        .collect()
     ).length;
+
+    // total: cap the read so the dashboard never breaks
+    const sample = await ctx.db.query("pageViews").take(10001);
+    const totalViews = sample.length;
 
     return {
       totalNotes: buildNotes.length,
       published,
-      drafts,
-      totalViews: pageViews.length,
+      drafts: buildNotes.length - published,
+      totalViews, // shows 10001 when the real number is larger
+      totalViewsCapped: sample.length > 10000,
       todayViews,
     };
   },

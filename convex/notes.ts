@@ -72,14 +72,11 @@ export const update = mutation({
 export const togglePublished = mutation({
   args: {
     id: v.id("notes"),
-    published: v.optional(v.boolean()),
+    published: v.boolean(),
   },
   handler: async (ctx, args) => {
     await requireAdmin(ctx.auth);
-
-    await ctx.db.patch(args.id, {
-      published: args.published,
-    });
+    await ctx.db.patch(args.id, { published: args.published });
   },
 });
 
