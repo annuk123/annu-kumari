@@ -8,7 +8,7 @@ import Link from "next/link";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import rehypeHighlight from "rehype-highlight";
-
+import NoteActions from "@/components/NoteActions";
 const ACCENT = "#D9A85F";
 
 function formatDate(timestamp: number) {
@@ -92,6 +92,14 @@ export default function BuildNoteClient({ slug }: { slug?: string }) {
               {post.summary}
             </p>
           )}
+          <div className="mt-5">
+  <NoteActions
+    noteId={post._id}
+    title={post.title}
+    likeCount={post.likeCount ?? 0}
+    viewCount={post.viewCount ?? 0}
+  />
+</div>
         </header>
 
         {/* content */}

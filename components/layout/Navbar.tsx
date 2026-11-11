@@ -64,7 +64,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         {/* name */}
         <a
-          href="#home"
+          href="/"
           className="font-mono text-[12px] font-semibold uppercase tracking-[0.2em] text-white/90 transition-colors hover:text-[#D9A85F]"
         >
           Annu

@@ -11,6 +11,7 @@
 import type * as auth from "../auth.js";
 import type * as buildNotes from "../buildNotes.js";
 import type * as dashboard from "../dashboard.js";
+import type * as engagement from "../engagement.js";
 import type * as notes from "../notes.js";
 
 import type {
@@ -23,6 +24,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   buildNotes: typeof buildNotes;
   dashboard: typeof dashboard;
+  engagement: typeof engagement;
   notes: typeof notes;
 }>;
 

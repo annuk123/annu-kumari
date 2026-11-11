@@ -15,6 +15,8 @@ export default defineSchema({
     createdAt: v.number(),
     published: v.boolean(),
     slug: v.optional(v.string()),
+    likeCount: v.optional(v.number()),
+    viewCount: v.optional(v.number()),
   }).index("by_slug", ["slug"])
   .index("by_created_at", ["createdAt"]),
 
@@ -23,5 +25,16 @@ export default defineSchema({
     noteId: v.optional(v.id("buildNotes")),
     createdAt: v.number(),
   }).index("by_created_at", ["createdAt"]),
-});
 
+  buildNoteLikes: defineTable({
+  noteId: v.id("buildNotes"),
+  visitorId: v.string(),
+  createdAt: v.number(),
+}).index("by_note_visitor", ["noteId", "visitorId"]),
+
+buildNoteViews: defineTable({
+  noteId: v.id("buildNotes"),
+  visitorId: v.string(),
+  createdAt: v.number(),
+}).index("by_note_visitor", ["noteId", "visitorId"]),
+});
