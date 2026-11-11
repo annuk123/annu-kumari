@@ -1,32 +1,24 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
-
 import { ClerkProvider } from "@clerk/nextjs";
-
 import { ConvexClientProvider } from "@/components/ConvexClient/ConvexClientProvider";
-
 import { Analytics } from "@vercel/analytics/next";
-
 import "highlight.js/styles/github-dark.css";
-
 import { Geist } from "next/font/google";
-
 import { cn } from "@/lib/utils";
-
 import Navbar from "@/components/layout/Navbar";
 
-import Footer from "@/components/layout/Footer";
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+// export const metadata: Metadata = {
+//   title: "Annu Kumari",
+//   description: "Solopreneur building AI products. Available for contract work.",
+// };
 
 export const metadata: Metadata = {
-  title: "Annu Kumari — Robotics, Embedded Systems & AI",
+  title: "Annu Kumari - AI Product Builder",
   description:
-    "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI. Building intelligent machines and systems through hands-on projects.",
+    "Solopreneur building AI products. Available for contract work. Fast, focused, and no bloat.",
 
   icons: {
     icon: "/icon.png",
@@ -35,9 +27,8 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Annu Kumari — Robotics, Embedded Systems & AI",
-    description:
-      "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI.",
+    title: "Annu Kumari - AI Product Builder",
+    description: "Solopreneur building AI products. Available for contract work.",
     url: "https://annu-kumari.nexralab.com",
     siteName: "Annu Kumari",
     images: [
@@ -45,7 +36,7 @@ export const metadata: Metadata = {
         url: "/annu.png",
         width: 1200,
         height: 630,
-        alt: "Annu Kumari — Robotics, Embedded Systems & AI",
+        alt: "Annu Kumari",
       },
     ],
     type: "website",
@@ -53,9 +44,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Annu Kumari — Robotics, Embedded Systems & AI",
-    description:
-      "Robotics and embedded systems builder exploring the intersection of hardware, software, IoT, and AI.",
+    title: "Annu Kumari - AI Product Builder",
+    description: "Solopreneur building AI products. Available for contract work.",
     images: ["/annu.png"],
   },
 };
@@ -72,7 +62,6 @@ export default function RootLayout({
           <ConvexClientProvider>
             <Navbar />
             <main>{children}</main>
-            <Footer />
             <Analytics />
           </ConvexClientProvider>
         </ClerkProvider>
