@@ -205,7 +205,7 @@ export default function Hero() {
                 View projects
               </a>
               <a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1ZZeHWg5fzn2B9rVe2U7UQwVs9I1EajpP/view?usp=drive_link"
                 className="rounded-md border border-white/25 px-5 py-3 text-white/75 transition-colors hover:border-[#D9A85F] hover:text-[#D9A85F]"
               >
                 Resume

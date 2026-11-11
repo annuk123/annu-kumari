@@ -100,7 +100,7 @@ export default function Navbar() {
             IST {time ?? "--:--:--"}
           </span>
           <a
-            href="/resume.pdf"
+            href="https://drive.google.com/file/d/1ZZeHWg5fzn2B9rVe2U7UQwVs9I1EajpP/view?usp=drive_link"
             className="rounded-md border border-white/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/80 transition-colors hover:border-[#D9A85F] hover:text-[#D9A85F]"
           >
             Resume
